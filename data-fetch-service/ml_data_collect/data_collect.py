@@ -185,7 +185,7 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
                     deaths += float(d)
                     gold += float(g)
                     
-                    time = res[i].get("Gamelength", "0:00")
+                    time = res[j].get("Gamelength", "0:00")
                     if time == None:
                         time = "0:00"
                     minutes, seconds = map(int, time.split(':'))
