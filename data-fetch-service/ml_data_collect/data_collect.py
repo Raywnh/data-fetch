@@ -120,8 +120,16 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
             if res[j].get("Wins", None) == "Yes":
                 if j < 10:
                     wins_10 += 1
-                    total_kills += float(res[j].get("Kills", None))
-                    total_assists += float(res[j].get("Assists", None))
+                    k = res[j].get("Kills", None)
+                    a = res[j].get("Assists", None)
+                    
+                    if k == None:
+                        k = 0
+                    if a == None:
+                        a = 0
+                        
+                    total_kills += float(k)
+                    total_assists += float(a)
                 wins_50 += 1
         
         kpa.append((total_kills / 10 if len(res) >= 10 else len(res)) + (total_assists / 10 if len(res) >= 10 else len(res)))
@@ -159,12 +167,27 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
                     wins_10 += 1
                 wins_50 += 1
             if j < 10:
-                kills += float(res[j].get("Kills", "0"))
-                assists += float(res[j].get("Assists", "0"))
-                deaths += float(res[j].get("Deaths", "0"))
-                gold += float(res[j].get("Gold", "0"))
+                k = res[j].get("Kills", "0")
+                a = res[j].get("Assists", "0")
+                d = res[j].get("Deaths", "0")
+                g = res[j].get("Gold", "0")
+                if k == None:
+                    k = 0
+                if a == None:
+                    a = 0
+                if d == None:
+                    d = 0
+                if g == None:
+                    g = 0
+                    
+                kills += float(k)
+                assists += float(a)
+                deaths += float(d)
+                gold += float(g)
                 
-                time = res[j].get("Gamelength", "0:00")
+                time = res[i].get("Gamelength", "0:00")
+                if time == None:
+                    time = "0:00"
                 minutes, seconds = map(int, time.split(':'))
                 total_minutes = minutes + seconds / 60
                 game_length += total_minutes
