@@ -1,0 +1,6 @@
+fastapi
+beautifulsoup4
+uvicorn
+selenium
+chromedriver-autoinstaller
+mwrogue
