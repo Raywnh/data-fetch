@@ -43,7 +43,7 @@ def start_data_collect():
     #   NA <- NOW
     #   EUW
     #   CHINA
-    for i in range(36, 250):
+    for i in range(0, 250):
         start_time = time.time()
 
         csv_helper.append_to_csv(start_core_loop(game[i], "2023"))
