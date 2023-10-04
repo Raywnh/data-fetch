@@ -43,7 +43,7 @@ def start_data_collect():
     #   NA <- NOW
     #   EUW
     #   CHINA
-    for i in range(0, 250):
+    for i in range(36, 250):
         start_time = time.time()
 
         csv_helper.append_to_csv(start_core_loop(game[i], "2023"))
@@ -210,9 +210,13 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
             
             curr_game = game.get("Team1", None)
    
-            if champions[i] in curr_game.get("Picks", None):
+            if champions[i] in curr_game.get("Picks", None) and  players[i] in curr_game.get("Players", None) :
                 game_count += 1
-                team_kills += int(curr_game.get("Kills", 0))
+                curr_game_kills = curr_game.get("Kills", 0)
+                if curr_game_kills == None:
+                    curr_game_kills = 0
+                team_kills += int(curr_game_kills)
+
         # KPA
         kill_participation = ((kills + assists) / float(team_kills / game_count)) if (game_count > 0 and team_kills > 0) else 0
         game_dto[f"{player_prefix}_kill_participation_on_champ_past_10_games"] = str(round(kill_participation, 2))
@@ -228,10 +232,20 @@ def hydrate_team_specific_data(before, year, team_data, team_name, game_dto, kpa
     gamelength = 0
     for i in range(len(res)):
         if i < 10:
-            team_kills += float(res[i].get("Team1", None).get("Kills", 0))
-            gold += float(res[i].get("Team1", None).get("Gold", 0))
+            tk = res[i].get("Team1", None).get("Kills", 0)
+            g = res[i].get("Team1", None).get("Gold", 0)
+            
+            if tk == None:
+                tk = 0
+            team_kills += float(tk)
+            
+            if g == None:
+                g = 0
+            gold += float(g)
             
             time = res[i].get("Gamelength", "0:00")
+            if time == None:
+                time = "0:00"
             minutes, seconds = map(int, time.split(':'))
             total_minutes = minutes + seconds / 60
             gamelength += total_minutes
