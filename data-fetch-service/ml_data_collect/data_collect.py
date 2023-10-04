@@ -166,24 +166,24 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
                 if j < 10:
                     wins_10 += 1
                 wins_50 += 1
-            if j < 10:
-                k = res[j].get("Kills", "0")
-                a = res[j].get("Assists", "0")
-                d = res[j].get("Deaths", "0")
-                g = res[j].get("Gold", "0")
-                if k == None:
-                    k = 0
-                if a == None:
-                    a = 0
-                if d == None:
-                    d = 0
-                if g == None:
-                    g = 0
-                    
-                kills += float(k)
-                assists += float(a)
-                deaths += float(d)
-                gold += float(g)
+                if j < 10:
+                    k = res[j].get("Kills", "0")
+                    a = res[j].get("Assists", "0")
+                    d = res[j].get("Deaths", "0")
+                    g = res[j].get("Gold", "0")
+                    if k == None:
+                        k = 0
+                    if a == None:
+                        a = 0
+                    if d == None:
+                        d = 0
+                    if g == None:
+                        g = 0
+                        
+                    kills += float(k)
+                    assists += float(a)
+                    deaths += float(d)
+                    gold += float(g)
                 
                 time = res[i].get("Gamelength", "0:00")
                 if time == None:
