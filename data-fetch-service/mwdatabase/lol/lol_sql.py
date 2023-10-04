@@ -3,7 +3,7 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from mwrogue.esports_client import EsportsClient
-from parser.lol import aggregate_data
+# from parser.lol import aggregate_data
 
 site = EsportsClient("lol")
 
@@ -53,8 +53,8 @@ def get_champion_matchup_data(champion1_unfiltered: str,champion2_unfiltered: st
     )
     response = data
     
-    if aggregate:
-        response = aggregate_data.average(data)
+    # if aggregate:
+        # response = aggregate_data.average(data)
 
     api_response = {
         "length" : len(data),
@@ -99,8 +99,8 @@ def get_champion_data(champion: str, region: str, limit: int, aggregate: bool, y
      
     response = data
 
-    if len(response) != 0 and aggregate:
-        response = aggregate_data.average(data)
+    # if len(response) != 0 and aggregate:
+        # response = aggregate_data.average(data)
     
     api_response = {
         "length" : len(data),
@@ -144,8 +144,8 @@ def get_player_data(playername: str, champion: str, limit: int, patch: str, aggr
     
     response = data
     
-    if len(response) != 0 and aggregate:
-        response = aggregate_data.average(data)
+    # if len(response) != 0 and aggregate:
+        # response = aggregate_data.average(data)
     
     api_response = {
         "length" : len(data),
