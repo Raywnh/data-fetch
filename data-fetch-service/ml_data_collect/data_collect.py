@@ -184,13 +184,13 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
                     assists += float(a)
                     deaths += float(d)
                     gold += float(g)
-                
-                time = res[i].get("Gamelength", "0:00")
-                if time == None:
-                    time = "0:00"
-                minutes, seconds = map(int, time.split(':'))
-                total_minutes = minutes + seconds / 60
-                game_length += total_minutes
+                    
+                    time = res[i].get("Gamelength", "0:00")
+                    if time == None:
+                        time = "0:00"
+                    minutes, seconds = map(int, time.split(':'))
+                    total_minutes = minutes + seconds / 60
+                    game_length += total_minutes
 
         if len(res) > 0:
             game_dto[f"{player_prefix}_winrate_on_champ_past_50_games"] = str(round(wins_50 / len(res), 2))
