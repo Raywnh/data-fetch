@@ -43,7 +43,7 @@ def start_data_collect():
     #   NA <- NOW
     #   EUW
     #   CHINA
-    for i in range(0, 250):
+    for i in range(138, 250):
         start_time = time.time()
 
         csv_helper.append_to_csv(start_core_loop(game[i], "2023"))
@@ -318,7 +318,7 @@ def hydrate_champ_specific_data(before, year, teamA_data, teamB_data, teamA_name
             "limit": 50
         }
         teamA50GamesRaw = make_get_request(champions_url, params)
-        teamA10GamesRaw = teamA50GamesRaw[:10]
+        teamA10GamesRaw = teamA50GamesRaw[:10] if len(teamA50GamesRaw) >= 10 else teamA50GamesRaw
 
         res = average(teamA50GamesRaw)
         game_dto[f"{teamA_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(res.get("Wins", 0))
@@ -333,7 +333,7 @@ def hydrate_champ_specific_data(before, year, teamA_data, teamB_data, teamA_name
             "limit": 50
         }
         teamB50GamesRaw = make_get_request(champions_url, params)
-        teamB10GamesRaw = teamB50GamesRaw[:10]
+        teamB10GamesRaw = teamB50GamesRaw[:10] if len(teamB50GamesRaw) >= 10 else teamB50GamesRaw
 
         res = average(teamB50GamesRaw)
         game_dto[f"{teamB_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(res.get("Wins", 0))
