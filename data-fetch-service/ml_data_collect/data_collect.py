@@ -35,7 +35,7 @@ def start_data_collect():
     #         games = fetch_games(region, year=year, limit=data_constants.total_games)
     #         for game in games:
 
-    game = fetch_games(region="China", year="2023", limit=data_constants.total_games_per_year)
+    game = fetch_games(region="EMEA", year="2023", limit=300)
     
     # gathered 250 games from:
     #   KOREA
@@ -43,7 +43,7 @@ def start_data_collect():
     #   NA <- NOW
     #   EUW
     #   CHINA
-    for i in range(65, 250):
+    for i in range(255, 260):
         start_time = time.time()
 
         csv_helper.append_to_csv(start_core_loop(game[i], "2023"))
