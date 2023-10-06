@@ -112,6 +112,7 @@ def get_player_data(playername: str, champion: str, limit: int, patch: str, aggr
     query_fields = "SP.Name, SP.Champion, SP.Kills, SP.Deaths, SP.Assists, SP.Gold, SP.CS, SP.PlayerWin=Wins, SP.Role, SP.Side, SP.MatchId, SG.Gamelength, SG.Patch, SG.DateTime_UTC"
     where_clause=[]
     if playername:
+        playername = playername.replace("'", "\\'")
         where_clause.append(f"SP.Name='{playername}'")
     if champion:
         champion = champion.replace("'", "\\'")        
@@ -158,6 +159,7 @@ def get_team_games(team_name: str, region: str, limit: int, aggregate: bool, yea
     where_clause = []
     
     if team_name:
+        team_name = team_name.replace("'", "\\'")
         where_clause.append(f"SG.WinTeam='{team_name}' OR SG.LossTeam='{team_name}'")
     if region:
         where_clause.append(f"TO.Region='{region}'")
