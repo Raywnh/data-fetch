@@ -308,7 +308,7 @@ def hydrate_champ_specific_data(before, year, teamA_data, teamB_data, teamA_name
                 "role": key
             }      
         res = average(make_get_request(champions_matchup_url, params))
-        game_dto[f"{data_constants.index_to_lane[idx]}_matchup_winrate_pro_current_season"] = str(res.get("Wins", 0))
+        game_dto[f"{data_constants.index_to_lane[idx]}_matchup_winrate_pro_current_season"] = str(round(res.get("Wins", 0), 2))
 
         # champion winrates 50 games
         params =  {
@@ -321,10 +321,10 @@ def hydrate_champ_specific_data(before, year, teamA_data, teamB_data, teamA_name
         teamA10GamesRaw = teamA50GamesRaw[:10] if len(teamA50GamesRaw) >= 10 else teamA50GamesRaw
 
         res = average(teamA50GamesRaw)
-        game_dto[f"{teamA_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(res.get("Wins", 0))
+        game_dto[f"{teamA_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(round(res.get("Wins", 0), 2))
 
         res = average(teamA10GamesRaw)
-        game_dto[f"{teamA_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_10_games"] = str(res.get("Wins", 0))
+        game_dto[f"{teamA_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_10_games"] = str(round(res.get("Wins", 0), 2))
 
         params =  {
             "before" : before,
@@ -336,10 +336,10 @@ def hydrate_champ_specific_data(before, year, teamA_data, teamB_data, teamA_name
         teamB10GamesRaw = teamB50GamesRaw[:10] if len(teamB50GamesRaw) >= 10 else teamB50GamesRaw
 
         res = average(teamB50GamesRaw)
-        game_dto[f"{teamB_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(res.get("Wins", 0))
+        game_dto[f"{teamB_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_50_games"] = str(round(res.get("Wins", 0), 2))
 
         res = average(teamB10GamesRaw)
-        game_dto[f"{teamB_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_10_games"] = str(res.get("Wins", 0))
+        game_dto[f"{teamB_name}_{data_constants.index_to_lane[idx]}_winrate_pro_past_10_games"] = str(round(res.get("Wins", 0), 2))
 
         idx += 1
 
