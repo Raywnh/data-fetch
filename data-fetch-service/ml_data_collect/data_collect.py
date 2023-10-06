@@ -35,7 +35,7 @@ def start_data_collect():
     #         games = fetch_games(region, year=year, limit=data_constants.total_games)
     #         for game in games:
 
-    game = fetch_games(region="North America", year="2023", limit=data_constants.total_games_per_year)
+    game = fetch_games(region="China", year="2023", limit=data_constants.total_games_per_year)
     
     # gathered 250 games from:
     #   KOREA
