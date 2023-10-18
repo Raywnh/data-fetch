@@ -185,7 +185,7 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
         else:
             game_dto[f"{player_prefix}_winrate_on_champ_past_50_games"] = "0.0"
 
-        if len(res) >= 10:
+        if len(res) > 0:
             game_dto[f"{player_prefix}_winrate_on_champ_past_10_games"] = str(round(wins_10 / len(res), 2))
         else:
             game_dto[f"{player_prefix}_winrate_on_champ_past_10_games"] = "0.0"
