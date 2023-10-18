@@ -126,12 +126,12 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
         if len(res) > 0:
             game_dto[f"{player_prefix}_winrate_past_10_games"] = str(round(wins_10 / min(10, len(res)), 2))
         else:
-            game_dto[f"{player_prefix}_winrate_past_10_games"] = '50.00'
+            game_dto[f"{player_prefix}_winrate_past_10_games"] = '0.0'
 
         if len(res) > 0:
             game_dto[f"{player_prefix}_winrate_past_50_games"] = str(round(wins_50 / len(res), 2))
         else:
-            game_dto[f"{player_prefix}_winrate_past_50_games"] = '50.00'
+            game_dto[f"{player_prefix}_winrate_past_50_games"] = '0.0'
 
         game_dto[f"{player_prefix}_num_games_played_on_champ_past_50_games"] = str(num_played_on_champ)
 
@@ -183,12 +183,12 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
         if len(res) > 0:
             game_dto[f"{player_prefix}_winrate_on_champ_past_50_games"] = str(round(wins_50 / len(res), 2))
         else:
-            game_dto[f"{player_prefix}_winrate_on_champ_past_50_games"] = "50.0"
+            game_dto[f"{player_prefix}_winrate_on_champ_past_50_games"] = "0.0"
 
         if len(res) >= 10:
             game_dto[f"{player_prefix}_winrate_on_champ_past_10_games"] = str(round(wins_10 / len(res), 2))
         else:
-            game_dto[f"{player_prefix}_winrate_on_champ_past_10_games"] = "50.0"
+            game_dto[f"{player_prefix}_winrate_on_champ_past_10_games"] = "0.0"
         
         if len(res) > 0:
             divisor = 10 if len(res) >= 10 else len(res)
