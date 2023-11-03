@@ -35,7 +35,7 @@ def start_data_collect():
         games = fetch_games(region, year=data_constants.years[1], limit=data_constants.total_games_per_year)
         for j in range(len(games)):
             start_time = time.time()
-            csv_helper.append_to_csv(start_core_loop(games[j], data_constants.years[0]))
+            csv_helper.append_to_csv(start_core_loop(games[j], data_constants.years[1]))
 
             total_time = time.time() - start_time
             print(f"Process finished {j} --- {total_time} seconds ---")
