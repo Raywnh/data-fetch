@@ -10,7 +10,7 @@ def append_to_csv(game_data: OrderedDict):
     csvfile.close()
     
 def create_game_data_dto():
-    with open('data.csv', 'r') as csvfile:
+    with open('200.csv', 'r') as csvfile:
         reader = csv.reader(csvfile)
         header = next(reader)
 
