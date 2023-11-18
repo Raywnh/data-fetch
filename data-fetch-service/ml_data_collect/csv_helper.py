@@ -1,7 +1,7 @@
 from collections import OrderedDict
 import csv
 
-file_path = '200.csv'
+file_path = 'data.csv'
 
 def append_to_csv(game_data: OrderedDict):
     with open(file_path, 'a', newline='') as csvfile:
