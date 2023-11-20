@@ -237,12 +237,14 @@ def hydrate_player_specific_data(before, year, team_data, team_name, game_dto, k
 def hydrate_team_specific_data(before, year, team_data, team_name, game_dto, kpa):
     # Win 50 game
     res = fetch_games(before=before, year=year, limit=50, team_name=team_data.get("Name", None), aggregate=False)
+    length = len(res)
     
     win_10 = 0
     win_50 = 0
     gold = 0
     team_kills = 0
     gamelength = 0
+    
     for i in range(len(res)):
         if i < 10:
             tk = res[i].get("Team1", None).get("Kills", 0)
@@ -267,13 +269,14 @@ def hydrate_team_specific_data(before, year, team_data, team_name, game_dto, kpa
             win_50 += 1
             if i < 10:
                 win_10 += 1
+    if length == 0:
+        length = 1
+    team_kills /= 10 if len(res) >= 10 else length
+    gold /= 10 if len(res) >= 10 else length
+    gamelength /= 10 if len(res) >= 10 else length
                 
-    team_kills /= 10 if len(res) >= 10 else len(res)
-    gold /= 10 if len(res) >= 10 else len(res)
-    gamelength /= 10 if len(res) >= 10 else len(res)
-                
-    game_dto[f"{team_name}_winrate_past_50_games"] = str(round(win_50 / len(res), 2))
-    game_dto[f"{team_name}_winrate_past_10_games"] = str(round(win_10 / (10 if len(res) >= 10 else len(res)), 2))
+    game_dto[f"{team_name}_winrate_past_50_games"] = str(round(win_50 / length, 2))
+    game_dto[f"{team_name}_winrate_past_10_games"] = str(round(win_10 / (10 if length >= 10 else length), 2))
     game_dto[f"{team_name}_average_gold_per_min_past_10_games"] = str(round(gold / gamelength, 2))
 
     total_kpa = 0
