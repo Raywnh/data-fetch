@@ -277,11 +277,11 @@ def hydrate_team_specific_data(before, year, team_data, team_name, game_dto, kpa
                 
     game_dto[f"{team_name}_winrate_past_50_games"] = str(round(win_50 / length, 2))
     game_dto[f"{team_name}_winrate_past_10_games"] = str(round(win_10 / (10 if length >= 10 else length), 2))
-    game_dto[f"{team_name}_average_gold_per_min_past_10_games"] = str(round(gold / gamelength, 2))
+    game_dto[f"{team_name}_average_gold_per_min_past_10_games"] = str(round(gold / gamelength if gamelength > 0 else length, 2))
 
     total_kpa = 0
     for individual_kpa in kpa:
-        total_kpa += individual_kpa / team_kills
+        total_kpa += individual_kpa / team_kills if team_kills > 0 else length
         
     game_dto[f"{team_name}_average_kill_participation_past_10_games"] = str(round(total_kpa / len(data_constants.index_to_lane), 2))
     
