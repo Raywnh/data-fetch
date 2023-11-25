@@ -30,14 +30,14 @@ def fetch_games(region=None, team_name = None, year = None, before = None, limit
     
 def start_data_collect():
     # Commented out because we start with one game first
-    for i in range(len(data_constants.years)):
-        for region in data_constants.regions:
+    for i in range(len(data_constants.regions)):
+        for year in data_constants.years:
             if region == "Europe" and i == 0:
                 region = "EMEA"
-            games = fetch_games(region, year=data_constants.years[i], limit=data_constants.total_games_per_year)
+            games = fetch_games(data_constants.regions[i], year=year, limit=data_constants.total_games_per_year)
             for j in range(len(games)):
                 start_time = time.time()
-                csv_helper.append_to_csv(start_core_loop(games[j], data_constants.years[i]))
+                csv_helper.append_to_csv(start_core_loop(games[j], year))
 
                 total_time = time.time() - start_time
                 print(f"Process finished {j} --- {total_time} seconds ---")
