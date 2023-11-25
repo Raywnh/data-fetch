@@ -32,8 +32,8 @@ def start_data_collect():
     # Commented out because we start with one game first
     for i in range(len(data_constants.regions)):
         for year in data_constants.years:
-            if region == "Europe" and i == 0:
-                region = "EMEA"
+            if data_constants.regions[i] == "Europe" and i == 0:
+                data_constants.regions[i] = "EMEA"
             games = fetch_games(data_constants.regions[i], year=year, limit=data_constants.total_games_per_year)
             for j in range(len(games)):
                 start_time = time.time()
